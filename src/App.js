@@ -1,23 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import Home from './Component.js/Home';
+import StudentDetail from './Component.js/StudentDetail';
+import Contact from './Component.js/Contact';
+import AddForm from './Component.js/AddForm';
+import { BrowserRouter,Routes,Route } from "react-router-dom";
+import Nav from './Component.js/Nav';
 
 function App() {
+ const getData=(data)=>{
+console.log("exported",data);
+ }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+      <Nav/>
+      <Routes>
+      
+      <Route path='/' element={< Home />}></Route> 
+      <Route exact path='/student-details' element={<StudentDetail/>}></Route>  
+<Route exact path='/contact' element={< Contact />}></Route> 
+<Route exact path='/add-form' element={< AddForm  onSubmit={getData} />}></Route> 
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 }
